@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import re
 import urllib2
-import time
+import urllib
 
 
 def get_page(url):
@@ -35,11 +35,9 @@ def find_imgs(url):
 
 
 def save_imgs(img_addrs):
-    for path in img_addrs:
-        name = path.split('/')
-        content = req_url(path)
-        with open('E:/Data-mining/python/mm_jpg/' + name[-1], 'wb') as f:
-            f.write(content)
+    for url_jpg in img_addrs:
+        name = url_jpg.split('/')
+        urllib.urlretrieve(url_jpg, 'E:/Data-mining/python/mm_jpg/' + name[-1])
 
 
 def get_img(pages):
@@ -55,5 +53,5 @@ def get_img(pages):
         save_imgs(img_addrs)
 
 if __name__ == '__main__':
-    print
+    # get the jpgs of the first 10 pages.
     get_img(10)
